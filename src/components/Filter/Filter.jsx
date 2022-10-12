@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import css from './filter.module.css';
-import ContactList from 'components/ContactList/ContactList';
 
 const Filter = ({ filter, onChangeInput, applyFilter, toDeleteContact }) => {
   return (

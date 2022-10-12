@@ -3,28 +3,29 @@ import React, { Component } from 'react';
 import Title from './Title/Title';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
-import { nanoid } from 'nanoid';
+import ContactList from './ContactList/ContactList';
 
 export class App extends Component {
   state = {
-    contacts: [],
+    contacts: [
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+    ],
     filter: '',
   };
 
-  handleAddContact = ({ name, number }) => {
-    const namesArr = this.state.contacts.map(el => el.name.toLocaleLowerCase());
+  handleAddContact = ({ id, name, number }) => {
+    const namesArr = this.state.contacts.map(el => el.name.toLowerCase());
 
-    if (!namesArr.includes(name.toLocaleLowerCase())) {
+    if (!namesArr.includes(name.toLowerCase())) {
       this.setState(prevState => ({
-        contacts: [
-          ...prevState.contacts,
-          { id: nanoid(5), name: name, number: number },
-        ],
+        contacts: [...prevState.contacts, { id, name: name, number: number }],
       }));
     } else {
       alert(`"${name}" is already added to contact list.`);
     }
-    console.log(this.state.contacts)
   };
 
   handleDeleteContact = userId => {
@@ -56,10 +57,9 @@ export class App extends Component {
           <Title title="Add contact" />
           <ContactForm toAddContact={this.handleAddContact} />
           <Title title="Find contact" />
-          <Filter
-            filter={filter}
-            onChangeInput={this.handleChangeSearch}
-            applyFilter={this.applyFilter}
+          <Filter filter={filter} onChangeInput={this.handleChangeSearch} />
+          <ContactList
+            contactList={this.applyFilter()}
             toDeleteContact={this.handleDeleteContact}
           />
         </div>

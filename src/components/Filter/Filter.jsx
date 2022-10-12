@@ -23,10 +23,7 @@ const Filter = ({ filter, onChangeInput, applyFilter, toDeleteContact }) => {
           onChange={onChangeInput}
         />
       </div>
-      <ContactList
-        contactList={applyFilter()}
-        toDeleteContact={toDeleteContact}
-      />
+
     </div>
   );
 };

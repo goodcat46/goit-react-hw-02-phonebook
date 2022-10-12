@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 import css from './contactForm.module.css';
 
 class ContactForm extends Component {
@@ -17,7 +18,7 @@ class ContactForm extends Component {
   handleSubmit = evt => {
     evt.preventDefault();
     const { name, number } = this.state;
-    this.props.toAddContact({ name: name, number: number });
+    this.props.toAddContact({ id: nanoid(), name: name, number: number });
     // * Очистка інпутів
     this.setState({
       name: '',

@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import css from './contact.module.css';
 
-const Contact = ({ name, number, toDelete }) => {
+const Contact = ({id, name, number, toDeleteContact }) => {
   return (
     <li className={css.contact}>
-      <span className={css.name}>{name}</span>
-      <span className={css.number}>{number}</span>
-      <button className={css.button} onClick={toDelete} type="button">
+      <span className={css.contactData}>
+        <span className={css.name}>{name}</span>
+        <span className={css.number}>{number}</span>
+      </span>
+      <button className={css.button} onClick={()=>{toDeleteContact(id)}} type="button">
         Delete
       </button>
     </li>
@@ -17,7 +19,7 @@ const Contact = ({ name, number, toDelete }) => {
 Contact.propTypes = {
   name: PropTypes.string,
   number: PropTypes.string,
-  toDelete: PropTypes.func,
+  toDeleteContact: PropTypes.func,
 };
 
 export default Contact;
